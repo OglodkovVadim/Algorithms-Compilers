@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 class Program
@@ -10,9 +8,9 @@ class Program
         {
             Console.WriteLine("Введите арифметическое выражение (exit - выход):");
             string input = Console.ReadLine();
-            input = input.Trim().Replace(" ", "");
+            input = input.Trim().Replace(" ", "").Replace(",", ".");
 
-            if (input.ToLower() == "exit")
+            if (input == "exit")
                 return;
 
             try
@@ -35,11 +33,9 @@ class Program
         }
     }
 
+    // Метод для проверки корректности арифметического выражения
     static bool IsValidExpression(string input)
     {
-        if (string.IsNullOrEmpty(input))
-            return false;
-
         int openParentheses = 0;
         bool lastWasOperator = true;
         bool hasDecimal = false;
@@ -67,22 +63,23 @@ class Program
                 }
                 lastWasOperator = false;
             }
-            else if ("+-*/,".Contains(c))
+            else if ("+-*/;".Contains(c)) // Поддержка разделителя ;
             {
-                if (lastWasOperator && c != '-')
+                if (lastWasOperator && c != '-')  // Минус может быть перед числом
                 {
                     throw new Exception("Некорректное использование оператора.");
                 }
                 lastWasOperator = true;
                 hasDecimal = false;
             }
-            else if (char.IsLetter(c))
+            else if (char.IsLetter(c)) // Проверка на начало функции
             {
+                // Игнорируем часть для функции
                 while (i < input.Length && char.IsLetter(input[i]))
                 {
                     i++;
                 }
-                i--;
+                i--; // Шаг назад, чтобы вернуться на последний символ функции
             }
             else
             {
@@ -98,13 +95,14 @@ class Program
         return true;
     }
 
+    // Преобразование инфиксного выражения в постфиксное (ОПЗ)
     static List<string> InfixToPostfix(string expression)
     {
         Stack<string> operators = new Stack<string>();
         List<string> output = new List<string>();
         string numberBuffer = "";
         string functionBuffer = "";
-        bool expectNegative = true;
+        bool expectNegative = true; // Для отслеживания отрицательных чисел
 
         for (int i = 0; i < expression.Length; i++)
         {
@@ -112,18 +110,18 @@ class Program
 
             if (char.IsDigit(c) || c == '.')
             {
-                numberBuffer += c;
-                expectNegative = false;
+                numberBuffer += c; // Собираем число
+                expectNegative = false; // После числа минус не может быть отрицательным числом
             }
             else
             {
                 if (numberBuffer.Length > 0)
                 {
-                    output.Add(numberBuffer);
+                    output.Add(numberBuffer); // Добавляем число в выходную строку
                     numberBuffer = "";
                 }
 
-                if (char.IsLetter(c))
+                if (char.IsLetter(c)) // Обработка функции
                 {
                     functionBuffer += c;
                     while (i + 1 < expression.Length && char.IsLetter(expression[i + 1]))
@@ -137,7 +135,7 @@ class Program
                 else if (c == '(')
                 {
                     operators.Push(c.ToString());
-                    expectNegative = true;
+                    expectNegative = true; // После открывающей скобки минус может означать отрицательное число
                 }
                 else if (c == ')')
                 {
@@ -145,49 +143,49 @@ class Program
                     {
                         output.Add(operators.Pop());
                     }
-                    operators.Pop();
+                    operators.Pop(); // Убираем открывающую скобку
                     if (operators.Count > 0 && IsFunction(operators.Peek()))
                     {
-                        output.Add(operators.Pop());
+                        output.Add(operators.Pop()); // Если есть функция, добавляем её в выходную строку
                     }
-                    expectNegative = false;
+                    expectNegative = false; // После закрывающей скобки минус не может быть отрицательным числом
                 }
-                else if (c == ',')
+                else if (c == ';')
                 {
+                    // Если встречается точка с запятой, продолжаем обработку аргументов функции
                     continue;
                 }
                 else if ("+-*/".Contains(c))
                 {
                     if (c == '-' && expectNegative)
                     {
-                        numberBuffer += c;
+                        output.Add("0"); // Добавляем 0 перед минусом, чтобы обработать отрицательные числа в скобках, например, (-1)
                     }
-                    else
+
+                    while (operators.Count > 0 && Precedence(operators.Peek()) >= Precedence(c.ToString()))
                     {
-                        while (operators.Count > 0 && Precedence(operators.Peek()) >= Precedence(c.ToString()))
-                        {
-                            output.Add(operators.Pop());
-                        }
-                        operators.Push(c.ToString());
+                        output.Add(operators.Pop());
                     }
-                    expectNegative = true;
+                    operators.Push(c.ToString());
+                    expectNegative = true; // Ожидаем, что после оператора может быть отрицательное число
                 }
             }
         }
 
         if (numberBuffer.Length > 0)
         {
-            output.Add(numberBuffer);
+            output.Add(numberBuffer); // Добавляем последнее число
         }
 
         while (operators.Count > 0)
         {
-            output.Add(operators.Pop());
+            output.Add(operators.Pop()); // Добавляем оставшиеся операторы
         }
 
         return output;
     }
 
+    // Метод для вычисления выражения в постфиксной записи (ОПЗ)
     static double EvaluatePostfix(List<string> postfix)
     {
         Stack<double> stack = new Stack<double>();
@@ -215,6 +213,7 @@ class Program
         return stack.Pop();
     }
 
+    // Применение арифметического оператора
     static double ApplyOperator(string op, double a, double b)
     {
         return op switch
@@ -227,6 +226,7 @@ class Program
         };
     }
 
+    // Применение встроенной функции (например, log или pow)
     static double ApplyFunction(string functionName, double a, double b)
     {
         return functionName switch
@@ -236,6 +236,7 @@ class Program
         };
     }
 
+    // Определение приоритета операторов и функций
     static int Precedence(string op)
     {
         return op switch
@@ -244,11 +245,12 @@ class Program
             "-" => 1,
             "*" => 2,
             "/" => 2,
-            _ when IsFunction(op) => 3,
+            _ when IsFunction(op) => 3, // Функции имеют наивысший приоритет
             _ => 0
         };
     }
 
+    // Проверка, является ли строка функцией
     static bool IsFunction(string token)
     {
         return token == "log";
