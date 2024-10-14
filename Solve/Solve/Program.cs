@@ -1,54 +1,40 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
 class Program
 {
-    // utils for claculating
-    public class CalcUtils
+    static void Main(string[] args)
     {
-        public static double ApplyOperator(string op, double a, double b)
+        while (true)
         {
-            return op switch
-            {
-                "+" => a + b,
-                "-" => a - b,
-                "*" => a * b,
-                "/" => b == 0 ? throw new DivideByZeroException() : a / b,
-                _ => throw new ArgumentException("Неизвестный оператор")
-            };
-        }
+            Console.WriteLine("Введите арифметическое выражение (exit - выход):");
+            string input = Console.ReadLine();
+            input = input.Trim().Replace(" ", "");
 
-        public static double ApplyFunction(string functionName, double a, double b)
-        {
-            return functionName switch
-            {
-                "log" => Math.Log(b, a),
-                _ => throw new ArgumentException("Неизвестная функция")
-            };
-        }
+            if (input.ToLower() == "exit")
+                return;
 
-        public static int Precedence(string op)
-        {
-            return op switch
+            try
             {
-                "+" => 1,
-                "-" => 1,
-                "*" => 2,
-                "/" => 2,
-                _ when IsFunction(op) => 3,
-                _ => 0
-            };
-        }
-
-        public static bool IsFunction(string token)
-        {
-            return token == "log";
+                if (IsValidExpression(input))
+                {
+                    List<string> postfix = InfixToPostfix(input);
+                    double result = EvaluatePostfix(postfix);
+                    Console.WriteLine($"Результат: {result}");
+                }
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Ошибка: Деление на ноль.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
         }
     }
 
-
-    // check expression
     static bool IsValidExpression(string input)
     {
         if (string.IsNullOrEmpty(input))
@@ -83,7 +69,7 @@ class Program
             }
             else if ("+-*/,".Contains(c))
             {
-                if (lastWasOperator && c != ',')
+                if (lastWasOperator && c != '-')
                 {
                     throw new Exception("Некорректное использование оператора.");
                 }
@@ -112,13 +98,13 @@ class Program
         return true;
     }
 
-    // transform
     static List<string> InfixToPostfix(string expression)
     {
-        Stack<string> operators = new();
-        List<string> output = [];
+        Stack<string> operators = new Stack<string>();
+        List<string> output = new List<string>();
         string numberBuffer = "";
         string functionBuffer = "";
+        bool expectNegative = true;
 
         for (int i = 0; i < expression.Length; i++)
         {
@@ -127,6 +113,7 @@ class Program
             if (char.IsDigit(c) || c == '.')
             {
                 numberBuffer += c;
+                expectNegative = false;
             }
             else
             {
@@ -150,6 +137,7 @@ class Program
                 else if (c == '(')
                 {
                     operators.Push(c.ToString());
+                    expectNegative = true;
                 }
                 else if (c == ')')
                 {
@@ -158,10 +146,11 @@ class Program
                         output.Add(operators.Pop());
                     }
                     operators.Pop();
-                    if (operators.Count > 0 && CalcUtils.IsFunction(operators.Peek()))
+                    if (operators.Count > 0 && IsFunction(operators.Peek()))
                     {
                         output.Add(operators.Pop());
                     }
+                    expectNegative = false;
                 }
                 else if (c == ',')
                 {
@@ -169,11 +158,19 @@ class Program
                 }
                 else if ("+-*/".Contains(c))
                 {
-                    while (operators.Count > 0 && CalcUtils.Precedence(operators.Peek()) >= CalcUtils.Precedence(c.ToString()))
+                    if (c == '-' && expectNegative)
                     {
-                        output.Add(operators.Pop());
+                        numberBuffer += c;
                     }
-                    operators.Push(c.ToString());
+                    else
+                    {
+                        while (operators.Count > 0 && Precedence(operators.Peek()) >= Precedence(c.ToString()))
+                        {
+                            output.Add(operators.Pop());
+                        }
+                        operators.Push(c.ToString());
+                    }
+                    expectNegative = true;
                 }
             }
         }
@@ -191,7 +188,6 @@ class Program
         return output;
     }
 
-    // calc
     static double EvaluatePostfix(List<string> postfix)
     {
         Stack<double> stack = new Stack<double>();
@@ -202,52 +198,59 @@ class Program
             {
                 stack.Push(number);
             }
-            else if (CalcUtils.IsFunction(token))
+            else if (IsFunction(token))
             {
                 double b = stack.Pop();
                 double a = stack.Pop();
-                stack.Push(CalcUtils.ApplyFunction(token, a, b));
+                stack.Push(ApplyFunction(token, a, b));
             }
             else
             {
                 double b = stack.Pop();
                 double a = stack.Pop();
-                stack.Push(CalcUtils.ApplyOperator(token, a, b));
+                stack.Push(ApplyOperator(token, a, b));
             }
         }
 
         return stack.Pop();
     }
 
-    static void Main(string[] args)
+    static double ApplyOperator(string op, double a, double b)
     {
-        while (true)
+        return op switch
         {
-            Console.WriteLine("Введите арифметическое выражение (\"exit\" - выход):");
-            string? input = Console.ReadLine();
+            "+" => a + b,
+            "-" => a - b,
+            "*" => a * b,
+            "/" => b == 0 ? throw new DivideByZeroException() : a / b,
+            _ => throw new ArgumentException("Неизвестный оператор")
+        };
+    }
 
-            if (input == null || input?.ToLower() == "exit")
-                return;
+    static double ApplyFunction(string functionName, double a, double b)
+    {
+        return functionName switch
+        {
+            "log" => Math.Log(b, a),
+            _ => throw new ArgumentException("Неизвестная функция")
+        };
+    }
 
-            input = input?.Trim().Replace(" ", "");
+    static int Precedence(string op)
+    {
+        return op switch
+        {
+            "+" => 1,
+            "-" => 1,
+            "*" => 2,
+            "/" => 2,
+            _ when IsFunction(op) => 3,
+            _ => 0
+        };
+    }
 
-            try
-            {
-                if (IsValidExpression(input))
-                {
-                    List<string> postfix = InfixToPostfix(input);
-                    double result = EvaluatePostfix(postfix);
-                    Console.WriteLine($"Результат: {result}");
-                }
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Ошибка: Деление на ноль.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-        }
+    static bool IsFunction(string token)
+    {
+        return token == "log";
     }
 }
