@@ -33,7 +33,6 @@ class Program
         }
     }
 
-    // Метод для проверки корректности арифметического выражения
     static bool IsValidExpression(string input)
     {
         int openParentheses = 0;
@@ -63,23 +62,22 @@ class Program
                 }
                 lastWasOperator = false;
             }
-            else if ("+-*/;".Contains(c)) // Поддержка разделителя ;
+            else if ("+-*/;".Contains(c))
             {
-                if (lastWasOperator && c != '-')  // Минус может быть перед числом
+                if (lastWasOperator && c != '-')
                 {
                     throw new Exception("Некорректное использование оператора.");
                 }
                 lastWasOperator = true;
                 hasDecimal = false;
             }
-            else if (char.IsLetter(c)) // Проверка на начало функции
+            else if (char.IsLetter(c))
             {
-                // Игнорируем часть для функции
                 while (i < input.Length && char.IsLetter(input[i]))
                 {
                     i++;
                 }
-                i--; // Шаг назад, чтобы вернуться на последний символ функции
+                i--;
             }
             else
             {
@@ -95,14 +93,13 @@ class Program
         return true;
     }
 
-    // Преобразование инфиксного выражения в постфиксное (ОПЗ)
     static List<string> InfixToPostfix(string expression)
     {
         Stack<string> operators = new Stack<string>();
         List<string> output = new List<string>();
         string numberBuffer = "";
         string functionBuffer = "";
-        bool expectNegative = true; // Для отслеживания отрицательных чисел
+        bool expectNegative = true;
 
         for (int i = 0; i < expression.Length; i++)
         {
@@ -110,18 +107,18 @@ class Program
 
             if (char.IsDigit(c) || c == '.')
             {
-                numberBuffer += c; // Собираем число
-                expectNegative = false; // После числа минус не может быть отрицательным числом
+                numberBuffer += c;
+                expectNegative = false;
             }
             else
             {
                 if (numberBuffer.Length > 0)
                 {
-                    output.Add(numberBuffer); // Добавляем число в выходную строку
+                    output.Add(numberBuffer);
                     numberBuffer = "";
                 }
 
-                if (char.IsLetter(c)) // Обработка функции
+                if (char.IsLetter(c))
                 {
                     functionBuffer += c;
                     while (i + 1 < expression.Length && char.IsLetter(expression[i + 1]))
@@ -135,7 +132,7 @@ class Program
                 else if (c == '(')
                 {
                     operators.Push(c.ToString());
-                    expectNegative = true; // После открывающей скобки минус может означать отрицательное число
+                    expectNegative = true;
                 }
                 else if (c == ')')
                 {
@@ -143,23 +140,22 @@ class Program
                     {
                         output.Add(operators.Pop());
                     }
-                    operators.Pop(); // Убираем открывающую скобку
+                    operators.Pop();
                     if (operators.Count > 0 && IsFunction(operators.Peek()))
                     {
-                        output.Add(operators.Pop()); // Если есть функция, добавляем её в выходную строку
+                        output.Add(operators.Pop());
                     }
-                    expectNegative = false; // После закрывающей скобки минус не может быть отрицательным числом
+                    expectNegative = false;
                 }
                 else if (c == ';')
                 {
-                    // Если встречается точка с запятой, продолжаем обработку аргументов функции
                     continue;
                 }
                 else if ("+-*/".Contains(c))
                 {
                     if (c == '-' && expectNegative)
                     {
-                        output.Add("0"); // Добавляем 0 перед минусом, чтобы обработать отрицательные числа в скобках, например, (-1)
+                        output.Add("0");
                     }
 
                     while (operators.Count > 0 && Precedence(operators.Peek()) >= Precedence(c.ToString()))
@@ -167,25 +163,24 @@ class Program
                         output.Add(operators.Pop());
                     }
                     operators.Push(c.ToString());
-                    expectNegative = true; // Ожидаем, что после оператора может быть отрицательное число
+                    expectNegative = true;
                 }
             }
         }
 
         if (numberBuffer.Length > 0)
         {
-            output.Add(numberBuffer); // Добавляем последнее число
+            output.Add(numberBuffer);
         }
 
         while (operators.Count > 0)
         {
-            output.Add(operators.Pop()); // Добавляем оставшиеся операторы
+            output.Add(operators.Pop());
         }
 
         return output;
     }
 
-    // Метод для вычисления выражения в постфиксной записи (ОПЗ)
     static double EvaluatePostfix(List<string> postfix)
     {
         Stack<double> stack = new Stack<double>();
@@ -213,7 +208,6 @@ class Program
         return stack.Pop();
     }
 
-    // Применение арифметического оператора
     static double ApplyOperator(string op, double a, double b)
     {
         return op switch
@@ -226,7 +220,6 @@ class Program
         };
     }
 
-    // Применение встроенной функции (например, log или pow)
     static double ApplyFunction(string functionName, double a, double b)
     {
         return functionName switch
@@ -236,7 +229,6 @@ class Program
         };
     }
 
-    // Определение приоритета операторов и функций
     static int Precedence(string op)
     {
         return op switch
@@ -245,12 +237,11 @@ class Program
             "-" => 1,
             "*" => 2,
             "/" => 2,
-            _ when IsFunction(op) => 3, // Функции имеют наивысший приоритет
+            _ when IsFunction(op) => 3,
             _ => 0
         };
     }
 
-    // Проверка, является ли строка функцией
     static bool IsFunction(string token)
     {
         return token == "log";
