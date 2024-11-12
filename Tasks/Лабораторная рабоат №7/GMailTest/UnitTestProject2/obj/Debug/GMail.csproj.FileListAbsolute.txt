@@ -1,0 +1,24 @@
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\chromedriver.exe
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.dll.config
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.pdb
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\TechTalk.SpecFlow.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\WebDriver.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\WebDriver.Support.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\WebDriver.xml
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Debug\WebDriver.Support.xml
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\obj\Debug\GMail.csprojResolveAssemblyReference.cache
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\obj\Debug\UnitTestProject2.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\obj\Debug\UnitTestProject2.pdb
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\chromedriver.exe
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.dll.config
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.dll
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\UnitTestProject2.pdb
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\TechTalk.SpecFlow.dll
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\WebDriver.dll
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\WebDriver.Support.dll
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\WebDriver.xml
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\bin\Debug\WebDriver.Support.xml
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\obj\Debug\GMail.csprojResolveAssemblyReference.cache
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\obj\Debug\UnitTestProject2.dll
+G:\тестирование ПО\методичка по тестированию ПО\Лабораторная рабоат №7\GMailTest\UnitTestProject2\obj\Debug\UnitTestProject2.pdb

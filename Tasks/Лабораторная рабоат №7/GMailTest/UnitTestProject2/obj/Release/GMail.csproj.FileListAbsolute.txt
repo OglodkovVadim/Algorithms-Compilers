@@ -1,0 +1,11 @@
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\chromedriver.exe
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\UnitTestProject2.dll.config
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\UnitTestProject2.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\UnitTestProject2.pdb
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\TechTalk.SpecFlow.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\WebDriver.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\WebDriver.Support.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\WebDriver.xml
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\bin\Release\WebDriver.Support.xml
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\obj\Release\UnitTestProject2.dll
+C:\Users\Vertigo\Desktop\GMailTest\UnitTestProject2\obj\Release\UnitTestProject2.pdb
