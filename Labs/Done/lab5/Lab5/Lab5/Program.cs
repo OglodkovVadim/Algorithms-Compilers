@@ -11,14 +11,11 @@ namespace SimpleInterpreter
         static void Main(string[] args)
         {
             var code = File.ReadAllText("../../Resources/Code.txt");
-            var bufLstCode = code.Split('\n');
+            var lstCode = code.Split('\n');
             
             Console.WriteLine("Code.txt");
-            for (int i = 0; i < bufLstCode.Length; i++)
-            {
-                var strToPrint = $"{i + 1}.  {bufLstCode[i]}";
-                Console.WriteLine(strToPrint);
-            }
+            for (int i = 0; i < lstCode.Length; i++)
+                Console.WriteLine($"{i + 1}.  {lstCode[i]}");
             Console.WriteLine();
 
             var interpreter = new Interpreter();
