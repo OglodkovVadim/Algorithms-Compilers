@@ -1,0 +1,4 @@
+﻿  Lab4.cpp
+C:\Users\oglod\OneDrive\Desktop\Education\Algorithms&Compilers\Labs\Lab4\Lab4\Lab4.cpp(278,103): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\oglod\OneDrive\Desktop\Education\Algorithms&Compilers\Labs\Lab4\Lab4\Lab4.cpp(294,70): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Lab4.vcxproj -> C:\Users\oglod\OneDrive\Desktop\Education\Algorithms&Compilers\Labs\Lab4\x64\Debug\Lab4.exe
