@@ -1,0 +1,15 @@
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/bin/Debug/net9.0/Lab5(macos)
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/bin/Debug/net9.0/Lab5(macos).deps.json
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/bin/Debug/net9.0/Lab5(macos).runtimeconfig.json
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/bin/Debug/net9.0/Lab5(macos).dll
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/bin/Debug/net9.0/Lab5(macos).pdb
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).GeneratedMSBuildEditorConfig.editorconfig
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).AssemblyInfoInputs.cache
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).AssemblyInfo.cs
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).csproj.CoreCompileInputs.cache
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).sourcelink.json
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).dll
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/refint/Lab5(macos).dll
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).pdb
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/Lab5(macos).genruntimeconfig.cache
+/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5(macos)/obj/Debug/net9.0/ref/Lab5(macos).dll

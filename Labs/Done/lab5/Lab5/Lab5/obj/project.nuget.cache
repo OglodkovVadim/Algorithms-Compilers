@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ZSzKiZiCqnvCyTDz1uIH6UR3KFJemqw3Ri1+uhA8gO96sPKfUptmPiHsUMrqjp9nUDWjoWFZ4iCpEYfmpwpj9w==",
+  "dgSpecHash": "yhAISNh8O3U=",
   "success": true,
-  "projectFilePath": "D:\\Не работа\\Education\\Algorithms-Compilers\\Labs\\Done\\lab5\\Lab5\\Lab5\\Lab5.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/vadimoglodkov/Desktop/Programming/C#/NewAlg/Algorithms-Compilers/Labs/Done/lab5/Lab5/Lab5/Lab5.csproj",
+  "expectedPackageFiles": [
+    "/Users/vadimoglodkov/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "/Users/vadimoglodkov/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "/Users/vadimoglodkov/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.11/microsoft.netcore.app.host.osx-arm64.8.0.11.nupkg.sha512"
+  ],
   "logs": []
 }
